@@ -20,6 +20,9 @@ donors %>%
   group_by(record_group) %>% 
   summarise(n(), sum(amount))
 
+donors %>% 
+  filter(contributor != "EMPOWER TEXANS") %>% 
+  summarise(sum(amount))
 
 # summaries ####
 
@@ -39,6 +42,11 @@ donors %>%
   summarise(num = n(), sumamount = sum(amount)) %>% 
   arrange(candidate, desc(sumamount))
 
+#by state
+donors %>% 
+  group_by(election_jurisdiction) %>% 
+  summarise(num = n(), sumamount = sum(amount)) %>% 
+  arrange(desc(sumamount))
 
 
 # summaries WITHOUT Empower Texans ####
@@ -62,6 +70,11 @@ donors %>%
   summarise(num = n(), sumamount = sum(amount)) %>% 
   arrange(candidate, desc(sumamount))
 
-
+#by state
+donors %>% 
+  filter(contributor != "EMPOWER TEXANS") %>% 
+  group_by(election_jurisdiction) %>% 
+  summarise(num = n(), sumamount = sum(amount)) %>% 
+  arrange(desc(sumamount))
 
 
