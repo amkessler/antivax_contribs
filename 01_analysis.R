@@ -15,7 +15,13 @@ donors <- donors %>%
 names(donors)
 glimpse(donors)
 
-# summaries
+# comparing set1 and set2
+donors %>% 
+  group_by(record_group) %>% 
+  summarise(n(), sum(amount))
+
+
+# summaries ####
 
 donors %>% 
   group_by(contributor) %>% 
@@ -27,13 +33,16 @@ donors %>%
   summarise(num = n(), sumamount = sum(amount)) %>% 
   arrange(desc(sumamount))
 
+#top contributors to each candidate
 donors %>% 
   group_by(candidate, contributor) %>% 
   summarise(num = n(), sumamount = sum(amount)) %>% 
   arrange(candidate, desc(sumamount))
 
 
-# summaries WITHOUT Empower Texans
+
+# summaries WITHOUT Empower Texans ####
+
 donors %>% 
   filter(contributor != "EMPOWER TEXANS") %>% 
   group_by(contributor) %>% 
@@ -46,11 +55,13 @@ donors %>%
   summarise(num = n(), sumamount = sum(amount)) %>% 
   arrange(desc(sumamount))
 
+#top contributors to each candidate
 donors %>% 
   filter(contributor != "EMPOWER TEXANS") %>% 
   group_by(election_jurisdiction, candidate, contributor) %>% 
   summarise(num = n(), sumamount = sum(amount)) %>% 
   arrange(candidate, desc(sumamount))
+
 
 
 
