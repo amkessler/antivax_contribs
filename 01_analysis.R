@@ -77,4 +77,6 @@ donors %>%
   summarise(num = n(), sumamount = sum(amount)) %>% 
   arrange(desc(sumamount))
 
-
+donors %>% 
+  count(year(date)) %>% 
+  View()
