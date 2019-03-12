@@ -15,6 +15,12 @@ donors <- donors %>%
 names(donors)
 glimpse(donors)
 
+#select only election years 2009 onward
+donors <- donors %>% 
+  filter(election_year >= 2009)
+
+
+
 # comparing set1 and set2
 donors %>% 
   group_by(record_group) %>% 
